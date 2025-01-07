@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.truta193.whmanager.pt2024_30221_truta_andrei_assignment_3.business.controller.OrderController"
+            prefHeight="400.0" prefWidth="600.0">
+    <HBox AnchorPane.topAnchor="0.0"
+          AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0"
+          AnchorPane.bottomAnchor="0.0">
+        <TableView fx:id="orderTableView"/>
+        <VBox>
+            <TableView fx:id="clientTableView"/>
+            <TableView fx:id="productTableView"/>
+            <HBox>
+                <TextField fx:id="quantityTextField" promptText="Quantity"/>
+                <Button fx:id="orderButton" text="Add Order" onMouseClicked="#onOrder"/>
+            </HBox>
+            <Label fx:id="orderErrorLabel" text="Invalid order" style="-fx-text-fill: red;" visible="${!controller.orderValid}"/>
+        </VBox>
+    </HBox>
+
+</AnchorPane>

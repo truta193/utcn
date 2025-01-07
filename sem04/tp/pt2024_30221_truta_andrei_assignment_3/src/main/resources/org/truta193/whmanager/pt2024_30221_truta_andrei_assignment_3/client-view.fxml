@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.truta193.whmanager.pt2024_30221_truta_andrei_assignment_3.business.controller.ClientController"
+            prefHeight="400.0"
+            prefWidth="600.0">
+
+    <TableView fx:id="clientTableView"
+               AnchorPane.topAnchor="0.0"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0"
+               AnchorPane.bottomAnchor="30.0"/>
+
+    <HBox spacing="10"
+          alignment="CENTER"
+          AnchorPane.bottomAnchor="0.0">
+
+        <TextField fx:id="clientNameTextField"
+                   promptText="Client Name"/>
+
+        <TextField fx:id="clientEmailTextField"
+                     promptText="Client Email"/>
+
+        <TextField fx:id="clientPasswordTextField"
+                        promptText="Client Password"/>
+
+        <TextField fx:id="clientAddressTextField"
+                        promptText="Client Address"/>
+
+        <Button fx:id="addClientButton"
+                text="Add Client"
+                onMouseClicked="#onAddClient"/>
+    </HBox>
+</AnchorPane>

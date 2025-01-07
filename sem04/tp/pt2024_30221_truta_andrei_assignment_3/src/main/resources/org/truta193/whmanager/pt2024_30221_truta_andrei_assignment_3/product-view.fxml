@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.sun.javafx.scene.control.DoubleField?>
+<?import com.sun.javafx.scene.control.IntegerField?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.truta193.whmanager.pt2024_30221_truta_andrei_assignment_3.business.controller.ProductController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TableView fx:id="productTableView"
+               AnchorPane.topAnchor="0.0"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0"
+               AnchorPane.bottomAnchor="30.0"/>
+
+    <HBox spacing="10" alignment="CENTER" AnchorPane.bottomAnchor="0.0">
+        <TextField fx:id="productNameTextField" promptText="Product Name"/>
+        <TextField fx:id="productPriceTextField" promptText="Price"/>
+        <TextField fx:id="productQuantityTextField" promptText="Quantity"/>
+
+        <Button fx:id="productClientButton" text="Add Product" onMouseClicked="#onAddProduct"/>
+    </HBox>
+
+
+</AnchorPane>

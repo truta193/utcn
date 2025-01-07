@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="TOP_CENTER"
+          xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.truta193.polynomialcalculator.pt2024_30221_truta_andrei_assignment_1.business.controller.SimpleOperationsController"
+          hgap="12"
+          vgap="12">
+
+    <VBox
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="1"
+            GridPane.fillWidth="true">
+        <Label
+                fx:id="firstPolynomialLabel"
+                text="First polynomial:"/>
+        <TextField
+                fx:id="firstPolynomialInput"
+                GridPane.columnIndex="1"
+                onKeyReleased="#onFirstPolynomialInputChanged"/>
+        <Label
+                fx:id="firstPolynomialError"
+                text="Invalid polynomial"
+                visible="${!controller.firstPolynomialValid}"
+                style="-fx-text-fill: red;"/>
+    </VBox>
+
+    <VBox
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="2"
+            GridPane.fillWidth="true">
+        <Label
+                fx:id="secondPolynomialLabel"
+                text="Second polynomial:"
+                GridPane.rowIndex="1"/>
+        <TextField
+                fx:id="secondPolynomialInput"
+                GridPane.columnIndex="1"
+                GridPane.rowIndex="1"
+                onKeyReleased="#onSecondPolynomialInputChanged"/>
+        <Label
+                fx:id="secondPolynomialError"
+                text="Invalid polynomial"
+                visible="${!controller.secondPolynomialValid}"
+                style="-fx-text-fill: red;"/>
+    </VBox>
+
+    <GridPane
+            GridPane.rowIndex="3"
+            GridPane.columnSpan="2"
+            GridPane.fillWidth="true"
+            disable="${!controller.inputValid}">
+        <Button
+                fx:id="addButton"
+                text="Add"
+                GridPane.columnIndex="0"
+                GridPane.hgrow="ALWAYS"
+                GridPane.vgrow="ALWAYS"
+                maxWidth="Infinity"
+                onAction="#onAddButtonClick"/>
+        <Button
+                fx:id="subtractButton"
+                text="Subtract"
+                GridPane.columnIndex="1"
+                GridPane.hgrow="ALWAYS"
+                GridPane.vgrow="ALWAYS"
+                maxWidth="Infinity"
+                onAction="#onSubtractButtonClick"/>
+        <Button
+                fx:id="multiplyButton"
+                text="Multiply"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="1"
+                GridPane.hgrow="ALWAYS"
+                GridPane.vgrow="ALWAYS"
+                maxWidth="Infinity"
+                onAction="#onMultiplyButtonClick"/>
+        <Button
+                fx:id="divideButton"
+                text="Divide"
+                GridPane.columnIndex="1"
+                GridPane.rowIndex="1"
+                GridPane.hgrow="ALWAYS"
+                GridPane.vgrow="ALWAYS"
+                maxWidth="Infinity"
+                onAction="#onDivideButtonClick"/>
+    </GridPane>
+
+    <VBox
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="4">
+        <Label
+                fx:id="resultLabel"
+                text="Result:"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="4"/>
+        <TextField
+                fx:id="resultField"
+                GridPane.columnSpan="2"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="4"
+                disable="true"/>
+    </VBox>
+</GridPane>

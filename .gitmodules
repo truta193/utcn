@@ -4,3 +4,6 @@
 [submodule "sem02/pla/BreakoutASM"]
 	path = sem02/pla/BreakoutASM
 	url = https://github.com/truta193/BreakoutASM.git
+[submodule "sem04/ac/PipelineMIPS"]
+	path = sem04/ac/PipelineMIPS
+	url = https://github.com/truta193/AC-PipelineMips.git

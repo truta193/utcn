@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.truta193.polynomialcalculator.pt2024_30221_truta_andrei_assignment_1.business.controller.ComplexOperationsController"
+          alignment="TOP_CENTER"
+          hgap="12"
+          vgap="12">
+    <VBox
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="1"
+            GridPane.fillWidth="true">
+        <Label
+                fx:id="polynomialLabel"
+                text="First polynomial:"/>
+        <TextField
+                fx:id="polynomialInput"
+                GridPane.columnIndex="1"
+                onKeyReleased="#onPolynomialInputChanged"/>
+        <Label
+                fx:id="polynomialError"
+                text="Invalid polynomial"
+                visible="${!controller.polynomialValid}"
+                style="-fx-text-fill: red"/>
+    </VBox>
+
+    <GridPane
+            GridPane.rowIndex="3"
+            GridPane.columnSpan="2"
+            GridPane.fillWidth="true"
+            disable="${!controller.polynomialValid}">
+        <Button
+                fx:id="integrationButton"
+                text="Integrate"
+                GridPane.columnIndex="0"
+                GridPane.hgrow="ALWAYS"
+                GridPane.vgrow="ALWAYS"
+                maxWidth="Infinity"
+                onAction="#onIntegrationButtonClick"/>
+        <Button
+                fx:id="derivationButton"
+                text="Derivate"
+                GridPane.columnIndex="1"
+                GridPane.hgrow="ALWAYS"
+                GridPane.vgrow="ALWAYS"
+                maxWidth="Infinity"
+                onAction="#onDerivationButtonClick"/>
+    </GridPane>
+
+    <VBox
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="4">
+        <Label
+                fx:id="resultLabel"
+                text="Result:"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="4"/>
+        <TextField
+                fx:id="resultField"
+                GridPane.columnSpan="2"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="4"
+                disable="true"/>
+    </VBox>
+</GridPane>

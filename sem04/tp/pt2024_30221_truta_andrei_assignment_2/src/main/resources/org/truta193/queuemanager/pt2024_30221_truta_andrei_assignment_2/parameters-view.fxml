@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.truta193.queuemanager.pt2024_30221_truta_andrei_assignment_2.business.controller.ParametersController"
+            prefHeight="400.0"
+            prefWidth="600.0">
+
+    <HBox alignment="CENTER">
+        <GridPane vgap="12"
+                  hgap="6">
+
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT"/>
+                <ColumnConstraints halignment="LEFT"/>
+            </columnConstraints>
+
+            <Label text="Number of servers:"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="0"/>
+            <TextField fx:id="numberOfServers"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="0"
+                       onKeyReleased="#onFormChange"/>
+
+            <Label text="Number of clients:"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="1"/>
+            <TextField fx:id="numberOfClients"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"
+                       onKeyReleased="#onFormChange"/>
+
+            <Label text="Time limit:"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="2"/>
+            <TextField fx:id="timeLimit"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="2"
+                       onKeyReleased="#onFormChange"/>
+
+            <Label text="Min processing time:"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="3"/>
+            <TextField fx:id="minProcessingTime"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="3"
+                       onKeyReleased="#onFormChange"/>
+
+            <Label text="Max processing time:"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="4"/>
+            <TextField fx:id="maxProcessingTime"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="4"
+            onKeyReleased="#onFormChange"/>
+
+
+            <Label text="Min arrival time:"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="5"/>
+            <TextField fx:id="minArrivalTime"
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="5"
+                       onKeyReleased="#onFormChange"/>
+
+            <Label text="Max arrival time:"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="6"/>
+            <TextField fx:id="maxArrivalTime"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="6"
+            onKeyReleased="#onFormChange"/>
+
+            <ComboBox
+                    fx:id="strategySelect"
+                    promptText="Choose Strategy"
+                    GridPane.columnIndex="0"
+                    GridPane.columnSpan="2"
+                    GridPane.rowIndex="7"
+                    onAction="#onFormChange">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Shortest Queue" />
+                        <String fx:value="Shortest wait time" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+
+            <Button text="Start simulation"
+                    disable="${controller.formValid}"
+                    onAction="#startSimulation"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="8"
+                    GridPane.columnSpan="2" />
+        </GridPane>
+    </HBox>
+</AnchorPane>
