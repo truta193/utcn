@@ -1,0 +1,3 @@
+R2 array de nodes
+R3 lista inlantuita de nodes
+Eficienta in timp: atat T1 cat si T2 sunt O(n) (ambele parcurg n noduri). Ca spatiu aditional, T1 e O(1) iar T2 este teoretic O(1) dar fiind recursiv incarca stiva, iar incarcarea stivei creste liniar cu n.
