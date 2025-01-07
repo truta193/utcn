@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Andrei/Documents/PSN/colocviu_extra/MUX_GENERIC/MUX_GENERIC.srcs/sources_1/new/MUX_GEN.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'MUX_GEN'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Andrei/Documents/PSN/colocviu_extra/MUX_GENERIC/MUX_GENERIC.srcs/sim_1/new/MUX_SIM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'MUX_SIM'

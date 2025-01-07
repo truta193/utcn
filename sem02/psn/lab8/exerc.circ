@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="3.8.0" version="1.0">
+  This file is intended to be loaded by Logisim-evolution v3.8.0(https://github.com/logisim-evolution/).
+
+  <lib desc="#Wiring" name="0">
+    <tool name="Pin">
+      <a name="appearance" val="classic"/>
+    </tool>
+  </lib>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4"/>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#TTL" name="6"/>
+  <lib desc="#TCL" name="7"/>
+  <lib desc="#Base" name="8"/>
+  <lib desc="#BFH-Praktika" name="9"/>
+  <lib desc="#Input/Output-Extra" name="10"/>
+  <lib desc="#Soc" name="11"/>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="8" map="Button2" name="Poke Tool"/>
+    <tool lib="8" map="Button3" name="Menu Tool"/>
+    <tool lib="8" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="8" name="Poke Tool"/>
+    <tool lib="8" name="Edit Tool"/>
+    <tool lib="8" name="Wiring Tool"/>
+    <tool lib="8" name="Text Tool"/>
+    <sep/>
+    <tool lib="0" name="Pin"/>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </tool>
+    <sep/>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+    <tool lib="1" name="XOR Gate"/>
+    <tool lib="1" name="NAND Gate"/>
+    <tool lib="1" name="NOR Gate"/>
+    <sep/>
+    <tool lib="4" name="D Flip-Flop"/>
+    <tool lib="4" name="Register"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="main"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="downloadBoard" val="BASYS3_CB17"/>
+    <a name="downloadFrequency" val="2000000.0"/>
+    <a name="simulationFrequency" val="2048000.0"/>
+    <boardmap boardname="BASYS3_CB17">
+      <mc/>
+      <mc/>
+      <mc/>
+      <mc/>
+      <mc/>
+      <mc/>
+      <mc key="/An1" pmap="192_323_0,154_323_0,117_323_0,78_323_0"/>
+      <mc key="/An2" pmap="341_323_0,305_323_0,268_323_0,228_323_0"/>
+      <mc key="/Aop" pmap="647_323_0,609_323_0,571_323_0"/>
+      <mc key="/Arez" pmap="241_295_0,203_295_0,168_295_0,131_295_0"/>
+      <mc key="/Azero" map="92,295"/>
+    </boardmap>
+    <comp lib="0" loc="(190,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Mi"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(190,150)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Ms"/>
+      <a name="width" val="3"/>
+    </comp>
+    <comp lib="0" loc="(190,220)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Di"/>
+    </comp>
+    <comp lib="0" loc="(190,240)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Ds"/>
+      <a name="width" val="3"/>
+    </comp>
+    <comp lib="0" loc="(190,330)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="An1"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(190,350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="An2"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(190,370)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Aop"/>
+      <a name="width" val="3"/>
+    </comp>
+    <comp lib="0" loc="(410,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Mo"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(410,220)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Do"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(410,330)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Arez"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(410,350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Azero"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp loc="(410,130)" name="mux">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="mux_1"/>
+    </comp>
+    <comp loc="(410,220)" name="dmux">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="dmux_1"/>
+    </comp>
+    <comp loc="(410,330)" name="alu">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="alu_1"/>
+    </comp>
+  </circuit>
+  <vhdl name="mux">LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+&#13;
+ENTITY mux IS&#13;
+  PORT (&#13;
+	inpt: in std_logic_vector(7 downto 0);
+	sel: in std_logic_vector(2 downto 0);
+	outp: out std_logic
+    );&#13;
+END mux;&#13;
+
+ARCHITECTURE TypeArchitecture OF mux IS&#13;
+&#13;
+BEGIN&#13;
+--	with sel select outp &lt;=
+--		inpt(0) when "000";
+&#13;	outp &lt;= inpt(0) when sel = "000" else
+		inpt(1) when sel = "001" else
+	 	inpt(2) when sel = "010" else 
+	 	inpt(3) when sel = "011" else
+	 	inpt(4) when sel = "100" else
+	 	inpt(5) when sel = "101" else
+	 	inpt(6) when sel = "110" else
+	 	inpt(7) when sel = "111";
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
+  <vhdl name="dmux">LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+&#13;
+ENTITY dmux IS&#13;
+  PORT (&#13;
+  	inpt: in std_logic;
+	sel: in std_logic_vector(2 downto 0);
+  	outp: out std_logic_vector(7 downto 0)
+    );&#13;
+END dmux;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+--Complete your VHDL description below&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+ARCHITECTURE TypeArchitecture OF dmux IS&#13;
+&#13;
+BEGIN&#13;
+&#13;	outp(0) &lt;= inpt and not(sel(2)) and not(sel(1)) and not(sel(0));
+	outp(1) &lt;= inpt and not(sel(2)) and not(sel(1)) and (sel(0));
+	outp(2) &lt;= inpt and not(sel(2)) and (sel(1)) and not(sel(0));
+	outp(3) &lt;= inpt and not(sel(2)) and (sel(1)) and (sel(0));
+	outp(4) &lt;= inpt and (sel(2)) and not(sel(1)) and not(sel(0));
+	outp(5) &lt;= inpt and (sel(2)) and not(sel(1)) and (sel(0));
+	outp(6) &lt;= inpt and (sel(2)) and (sel(1)) and not(sel(0));
+	outp(7) &lt;= inpt and (sel(2)) and (sel(1)) and (sel(0));
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
+  <vhdl name="alu">LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+use ieee.std_logic_unsigned.all;&#13;
+
+ENTITY alu IS&#13;
+  PORT (&#13;
+	N1: in std_logic_vector(3 downto 0);
+	N2: in std_logic_vector(3 downto 0);
+	OP: in std_logic_vector(2 downto 0);
+	REZ: out std_logic_vector(3 downto 0);
+	ZERO: out std_logic
+    );&#13;
+END alu;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+--Complete your VHDL description below&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;--Add 0, Dif 1, sra 2, sla 3, sr 4, and 5, or 6, xor 7
+ARCHITECTURE TypeArchitecture OF alu IS&#13;
+&#13;signal STORE: std_logic_vector(4 downto 0);
+BEGIN&#13;
+&#13;	with OP select STORE &lt;=
+		('0' &amp; N1) + ('0' &amp; N2) when "000",
+		('0' &amp; N1) - ('0' &amp; N2) when "001",
+		'0' &amp; '0' &amp; N1(3 downto 1) when "010",
+		'0' &amp; N1(3 downto 1) &amp; '0' when "011",
+		'0' &amp; N1(0) &amp; N1(3 downto 1) when "100",
+		('0' &amp; N1) and ('0' &amp; N2) when "101",
+		('0' &amp; N1) or ('0' &amp; N2) when "110",
+		('0' &amp; N1) xor ('0' &amp; N2) when "111",
+		"00000" when others;
+		
+	REZ &lt;= STORE(3 downto 0);
+	ZERO &lt;= STORE(4);
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
+</project>

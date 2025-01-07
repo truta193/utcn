@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "MUXN_SIM_behav" "xil_defaultlib.MUXN_SIM" -log "elaborate.log" 

@@ -1,0 +1,6 @@
+[submodule "sem02/psn/ClickCounterFPGA"]
+	path = sem02/psn/ClickCounterFPGA
+	url = https://github.com/truta193/ClickCounterFPGA.git
+[submodule "sem02/pla/BreakoutASM"]
+	path = sem02/pla/BreakoutASM
+	url = https://github.com/truta193/BreakoutASM.git

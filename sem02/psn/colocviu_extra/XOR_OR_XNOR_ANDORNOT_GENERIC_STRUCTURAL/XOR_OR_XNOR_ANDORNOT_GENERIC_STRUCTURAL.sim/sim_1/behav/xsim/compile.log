@@ -1,0 +1,7 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Andrei/Documents/PSN/colocviu_extra/XOR_OR_XNOR_ANDORNOT_GENERIC_STRUCTURAL/XOR_OR_XNOR_ANDORNOT_GENERIC_STRUCTURAL.srcs/sources_1/new/XOR_GENERIC.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'XORR'
+INFO: [VRFC 10-3107] analyzing entity 'AND_GENERIC'
+INFO: [VRFC 10-3107] analyzing entity 'OR_GENERIC'
+INFO: [VRFC 10-3107] analyzing entity 'NOTT'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Andrei/Documents/PSN/colocviu_extra/XOR_OR_XNOR_ANDORNOT_GENERIC_STRUCTURAL/XOR_OR_XNOR_ANDORNOT_GENERIC_STRUCTURAL.srcs/sim_1/new/XOR_SIM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'XOR_SIM'

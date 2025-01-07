@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../moebius_generate.srcs/sources_1/new/MOEB_GEN.vhd" \
+"../../../../moebius_generate.srcs/sim_1/new/MOEB_SIM.vhd" \
+
+# Do not sort compile order
+nosort

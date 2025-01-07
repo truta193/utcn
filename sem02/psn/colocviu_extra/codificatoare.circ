@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="3.7.2" version="1.0">
+  This file is intended to be loaded by Logisim-evolution v3.7.2(https://github.com/logisim-evolution/).
+
+  <lib desc="#Wiring" name="0">
+    <tool name="Pin">
+      <a name="appearance" val="classic"/>
+    </tool>
+  </lib>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4"/>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#TTL" name="6"/>
+  <lib desc="#TCL" name="7"/>
+  <lib desc="#Base" name="8"/>
+  <lib desc="#BFH-Praktika" name="9"/>
+  <lib desc="#Input/Output-Extra" name="10"/>
+  <lib desc="#Soc" name="11"/>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="8" map="Button2" name="Menu Tool"/>
+    <tool lib="8" map="Button3" name="Menu Tool"/>
+    <tool lib="8" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="8" name="Poke Tool"/>
+    <tool lib="8" name="Edit Tool"/>
+    <tool lib="8" name="Wiring Tool"/>
+    <tool lib="8" name="Text Tool"/>
+    <sep/>
+    <tool lib="0" name="Pin"/>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </tool>
+    <sep/>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+    <tool lib="1" name="XOR Gate"/>
+    <tool lib="1" name="NAND Gate"/>
+    <tool lib="1" name="NOR Gate"/>
+    <sep/>
+    <tool lib="4" name="D Flip-Flop"/>
+    <tool lib="4" name="Register"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="main"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="4.0"/>
+    <comp lib="0" loc="(150,230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(370,230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp loc="(370,230)" name="bcd_to_gray">
+      <a name="appearance" val="logisim_evolution"/>
+    </comp>
+  </circuit>
+  <vhdl name="bcd_to_gray">LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+use ieee.std_logic_unsigned.all;&#13;
+
+ENTITY bcd_to_gray IS&#13;
+  PORT (&#13;
+  	bcd: in std_logic_vector(3 downto 0);
+  	gray: out std_logic_vector(3 downto 0)
+	);&#13;
+END bcd_to_gray;&#13;
+&#13;
+ARCHITECTURE TypeArchitecture OF bcd_to_gray IS&#13;
+&#13;
+BEGIN&#13;
+&#13;	gray &lt;= 	"0000" when bcd = "0000" else
+			"0001" when bcd = "0001" else
+			"0011" when bcd = "0010" else 
+			"0010" when bcd = "0011" else 
+			"1110" when bcd = "0100" else 
+			"1111" when bcd = "0101" else 
+			"1101" when bcd = "0110" else 
+			"1100" when bcd = "0111" else 
+			"1111";
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
+  <vhdl name="bcd_to_2421">LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+&#13;
+ENTITY bcd_to_2421 IS&#13;
+  PORT (&#13;
+	bcd: in std_logic_Vector(3 downto 0);
+	outp: out std_logic_vector(3 downto 0)
+    );&#13;
+END bcd_to_2421;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+--Complete your VHDL description below&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+ARCHITECTURE TypeArchitecture OF bcd_to_2421 IS&#13;
+&#13;
+BEGIN&#13;
+	outp &lt;= 	"0000" when bcd = "0000" else
+			"0001" when bcd = "0001" else
+			"0010" when bcd = "0010" else
+			"0011" when bcd = "0011" else
+			"0100" when bcd = "0100" else
+			"1011" when bcd = "0101" else
+			"1100" when bcd = "0110" else
+			"1101" when bcd = "0111" else
+			"1110" when bcd = "1000" else
+			"1111" when bcd = "1001" else
+			"1111";
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
+  <vhdl name="exces3_to_bcd">LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+&#13;
+ENTITY exces3_to_bcd IS&#13;
+  PORT (&#13;
+	exces3: in std_logic_vector(3 downto 0);
+	bcd: out std_logic_vector(3 downto 0)
+    );&#13;
+END exces3_to_bcd;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+--Complete your VHDL description below&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+ARCHITECTURE TypeArchitecture OF exces3_to_bcd IS&#13;
+&#13;
+BEGIN&#13;
+&#13;	bcd &lt;= 	"0000" when exces3 = "0011" else
+			"0001" when exces3 = "0100" else
+			"0010" when exces3 = "0101" else
+			"0011" when exces3 = "0110" else
+			"0100" when exces3 = "0111" else
+			"0101" when exces3 = "1000" else
+			"0110" when exces3 = "1001" else
+			"0111" when exces3 = "1010" else
+			"1000" when exces3 = "1011" else
+			"1001" when exces3 = "1100" else
+			"1111";
+			
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
+  <vhdl name="dec_to_bcd">LIBRARY ieee;&#13;
+USE ieee.std_logic_1164.all;&#13;
+&#13;
+ENTITY dec_to_bcd IS&#13;
+  PORT (&#13;
+	decimal: in std_logic_vector(9 downto 0);
+	bcd: out std_logic_vector(3 downto 0)
+    );&#13;
+END dec_to_bcd;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+--Complete your VHDL description below&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+ARCHITECTURE TypeArchitecture OF dec_to_bcd IS&#13;
+&#13;
+BEGIN&#13;
+&#13;	bcd &lt;= "0000" when decimal(0) = '1' else 
+	 "0001" when decimal(1) = '1' else 
+	"0010" when decimal(2) = '1' else 
+	"0011" when decimal(3) = '1' else 
+	 "0100" when decimal(4) = '1' else 
+	 "0101" when decimal(5) = '1' else 
+	 "0110" when decimal(6) = '1' else 
+	 "0111" when decimal(7) = '1' else 
+	 "1000" when decimal(8) = '1' else 
+	 "1001" when decimal(9) = '1' else 
+	"1111"; 
+&#13;
+END TypeArchitecture;&#13;
+</vhdl>
+</project>

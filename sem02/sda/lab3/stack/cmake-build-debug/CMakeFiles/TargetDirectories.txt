@@ -1,0 +1,3 @@
+/home/andrei/Documents/2022-2023/sem2/sda/lab3/stack/cmake-build-debug/CMakeFiles/stack.dir
+/home/andrei/Documents/2022-2023/sem2/sda/lab3/stack/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/andrei/Documents/2022-2023/sem2/sda/lab3/stack/cmake-build-debug/CMakeFiles/rebuild_cache.dir
