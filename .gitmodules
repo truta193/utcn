@@ -7,3 +7,6 @@
 [submodule "sem04/ac/PipelineMIPS"]
 	path = sem04/ac/PipelineMIPS
 	url = https://github.com/truta193/AC-PipelineMips.git
+[submodule "sem03/bd/BD-Polyclinic"]
+	path = sem03/bd/BD-Polyclinic
+	url = https://github.com/truta193/BD-Polyclinic.git
