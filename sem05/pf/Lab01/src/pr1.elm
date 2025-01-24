@@ -1,0 +1,1 @@
+gcd x y = if y == 0 then x else gcd y (modBy y x)  
