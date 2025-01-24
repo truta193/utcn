@@ -10,3 +10,9 @@
 [submodule "sem03/bd/BD-Polyclinic"]
 	path = sem03/bd/BD-Polyclinic
 	url = https://github.com/truta193/BD-Polyclinic.git
+[submodule "sem05/pg/PG-OpenGLScene"]
+	path = sem05/pg/PG-OpenGLScene
+	url = https://github.com/truta193/PG-OpenGLScene.git
+[submodule "sem05/ssc/SSC-MipsSimulator"]
+	path = sem05/ssc/SSC-MipsSimulator
+	url = https://github.com/truta193/SSC-MipsSimulator.git
