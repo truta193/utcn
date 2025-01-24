@@ -19,3 +19,6 @@
 [submodule "sem05/is/IS-ProjectManagementApplication"]
 	path = sem05/is/IS-ProjectManagementApplication
 	url = https://github.com/truta193/IS-ProjectManagementApplication.git
+[submodule "sem05/pmp/PMP-Battleships"]
+	path = sem05/pmp/PMP-Battleships
+	url = https://github.com/truta193/PMP-Battleships.git
