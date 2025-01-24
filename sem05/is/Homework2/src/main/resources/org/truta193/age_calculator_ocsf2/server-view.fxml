@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.truta193.age_calculator_ocsf2.ServerController" spacing="10" alignment="CENTER">
+    <!-- Event Log Section -->
+    <VBox spacing="10">
+        <Label text="Event Log" />
+        <TextArea fx:id="eventLog" editable="false" VBox.vgrow="ALWAYS" />
+    </VBox>
+
+    <!-- Dynamic Menu Section -->
+    <VBox fx:id="menuContainer" spacing="10" />
+</HBox>
