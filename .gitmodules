@@ -16,3 +16,6 @@
 [submodule "sem05/ssc/SSC-MipsSimulator"]
 	path = sem05/ssc/SSC-MipsSimulator
 	url = https://github.com/truta193/SSC-MipsSimulator.git
+[submodule "sem05/is/IS-ProjectManagementApplication"]
+	path = sem05/is/IS-ProjectManagementApplication
+	url = https://github.com/truta193/IS-ProjectManagementApplication.git
