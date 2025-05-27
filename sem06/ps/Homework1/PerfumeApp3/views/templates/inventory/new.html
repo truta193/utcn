@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Inventory | Perfume Chain Management{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add to Inventory</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h1 class="h3 mb-0"><i class="fas fa-boxes me-2"></i>Add to Inventory</h1>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('create_inventory') }}" method="post">
+                    <div class="mb-3">
+                        <label for="perfumery_id" class="form-label">Perfumery *</label>
+                        <select class="form-select" id="perfumery_id" name="perfumery_id" required>
+                            <option value="">Select perfumery</option>
+                            {% for perfumery in perfumeries %}
+                            <option value="{{ perfumery.id }}">{{ perfumery.name }} ({{ perfumery.city }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="perfume_id" class="form-label">Perfume *</label>
+                        <select class="form-select" id="perfume_id" name="perfume_id" required>
+                            <option value="">Select perfume</option>
+                            {% for perfume in perfumes %}
+                            <option value="{{ perfume.id }}">{{ perfume.name }} by {{ perfume.brand }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="quantity" class="form-label">Quantity *</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" min="0" value="0"
+                               required>
+                        <div class="form-text">Set to 0 for out-of-stock items.</div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('home') }}" class="btn btn-secondary">
+                            <i class="fas fa-times me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Add to Inventory
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

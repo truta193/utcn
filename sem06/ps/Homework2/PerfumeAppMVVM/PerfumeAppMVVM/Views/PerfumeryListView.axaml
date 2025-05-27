@@ -1,0 +1,93 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:PerfumeAppMVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="PerfumeAppMVVM.Views.PerfumeryListView"
+             x:DataType="vm:PerfumeryListViewModel">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Search Panel -->
+        <Grid Grid.Row="0" ColumnDefinitions="*, Auto" Margin="10">
+            <TextBox Grid.Column="0"
+                     Text="{Binding SearchQuery}"
+                     Watermark="Search perfumeries..."
+                     Margin="0,0,10,0" />
+
+            <Button Grid.Column="1"
+                    Content="Search"
+                    Command="{Binding SearchPerfumeriesCommand}" />
+        </Grid>
+
+        <!-- Perfumery List -->
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding PerfumeryList}"
+                 SelectedItem="{Binding SelectedPerfumery}"
+                 Background="Transparent"
+                 Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,Auto" Margin="5">
+                        <StackPanel Grid.Column="0"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}"
+                                       FontWeight="Bold"
+                                       FontSize="16" />
+                            <TextBlock Text="{Binding City}"
+                                       Foreground="#666666" />
+                            <TextBlock Text="{Binding Address}"
+                                       Foreground="#666666"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding Phone}"
+                                       Foreground="#666666"
+                                       IsVisible="{Binding Phone, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                        </StackPanel>
+
+                        <Border Grid.Column="1"
+                                Background="#F0F0F0"
+                                CornerRadius="4"
+                                Padding="8"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center">
+                            <TextBlock Text="{Binding InventoryCount, StringFormat='{}{0} Products'}"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#444444" />
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Action Buttons -->
+        <Grid Grid.Row="2"
+              ColumnDefinitions="Auto,*,Auto"
+              Margin="10">
+            <Button Grid.Column="0"
+                    Content="View Details"
+                    HorizontalAlignment="Center"
+                    Margin="5"
+                    Padding="20,10"
+                    Command="{Binding ViewDetailsCommand}"
+                    IsEnabled="{Binding SelectedPerfumery, Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal">
+                <Button Content="Edit Selected"
+                        HorizontalAlignment="Center"
+                        Margin="5"
+                        Padding="20,10"
+                        Command="{Binding EditPerfumeryCommand}"
+                        IsEnabled="{Binding SelectedPerfumery, Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+                <Button Content="Delete Selected"
+                        HorizontalAlignment="Center"
+                        Margin="5"
+                        Padding="20,10"
+                        Command="{Binding DeletePerfumeryCommand}"
+                        IsEnabled="{Binding SelectedPerfumery, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - Perfume Chain Management{% endblock %}
+
+{% block content %}
+<div class="main-section bg-light py-5">
+    <div class="container">
+        <h2 class="section-title">Main Features</h2>
+        <div class="row g-4 py-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-spray-can"></i>
+                        </div>
+                        <h3>Manage Perfumes</h3>
+                        <p>Add, edit, and remove perfume products. Upload images, set prices, and maintain detailed
+                            product information.</p>
+                        <a href="{{ url_for('list_perfumes') }}" class="btn btn-outline-primary btn-feature">Go to
+                            Perfumes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>Manage Stores</h3>
+                        <p>Organize your chain of perfumeries. Track locations, contact information, and responsible
+                            managers.</p>
+                        <a href="{{ url_for('list_perfumeries') }}" class="btn btn-outline-primary btn-feature">Go to
+                            Stores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3>Inventory Control</h3>
+                        <p>Track stock levels across all stores. Generate reports of out-of-stock items and manage
+                            availability.</p>
+                        <a href="{{ url_for('new_inventory_form') }}" class="btn btn-outline-primary btn-feature">Manage
+                            Inventory</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

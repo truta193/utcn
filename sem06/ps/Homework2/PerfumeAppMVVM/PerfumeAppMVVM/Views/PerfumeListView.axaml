@@ -1,0 +1,102 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:PerfumeAppMVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="PerfumeAppMVVM.Views.PerfumeListView"
+             x:DataType="vm:PerfumeListViewModel">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Search bar -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="10">
+            <TextBox Grid.Column="0"
+                     Watermark="Search perfumes..."
+                     Text="{Binding SearchQuery}"
+                     Margin="0,0,10,0" />
+
+            <Button Grid.Column="1"
+                    Content="Search"
+                    Command="{Binding SearchPerfumesCommand}" />
+        </Grid>
+
+        <!-- Perfume List -->
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding PerfumeList}"
+                 SelectedItem="{Binding SelectedPerfume}"
+                 Background="Transparent"
+                 Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,*" Margin="5">
+                        <Border Grid.Column="0"
+                                Width="80"
+                                Height="80"
+                                Margin="0,0,10,0"
+                                CornerRadius="5"
+                                ClipToBounds="True">
+                            <Panel Background="#F0F0F0">
+                                <Image Source="{Binding ImagePath, Converter={StaticResource StringToImageConverter}}"
+                                       Stretch="Uniform"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       IsVisible="{Binding ImagePath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                <TextBlock Text="No Image"
+                                           IsVisible="{Binding ImagePath, Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Foreground="#AAAAAA" />
+                            </Panel>
+                        </Border>
+
+                        <StackPanel Grid.Column="1"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Name}"
+                                       FontWeight="Bold"
+                                       FontSize="16" />
+                            <TextBlock Text="{Binding Brand}"
+                                       Foreground="#666666" />
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <TextBlock Text="{Binding Price, StringFormat='{}{0:C}'}"
+                                           FontWeight="SemiBold" />
+                                <TextBlock Text=" • " Foreground="#AAAAAA" />
+                                <TextBlock Text="{Binding VolumeML, StringFormat='{}{0} ml'}"
+                                           Foreground="#666666" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Action Buttons -->
+        <Grid Grid.Row="2"
+              ColumnDefinitions="Auto,*,Auto"
+              Margin="10">
+            <Button Grid.Column="0"
+                    Content="View Details"
+                    HorizontalAlignment="Center"
+                    Margin="5"
+                    Padding="20,10"
+                    Command="{Binding ViewDetailsCommand}"
+                    IsEnabled="{Binding SelectedPerfume, Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal">
+                <Button Content="Edit Selected"
+                        HorizontalAlignment="Center"
+                        Margin="5"
+                        Padding="20,10"
+                        Command="{Binding EditPerfumeCommand}"
+                        IsEnabled="{Binding SelectedPerfume, Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+                <Button Content="Delete Selected"
+                        HorizontalAlignment="Center"
+                        Margin="5"
+                        Padding="20,10"
+                        Command="{Binding DeletePerfumeCommand}"
+                        IsEnabled="{Binding SelectedPerfume, Converter={x:Static ObjectConverters.IsNotNull}}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,57 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="using:PerfumeAppMVVM.Views"
+        xmlns:vm="using:PerfumeAppMVVM.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+        x:Class="PerfumeAppMVVM.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Perfumery Management System"
+        Width="900" Height="600"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- App Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+            <TextBlock Text="Perfumery Management System"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center" />
+
+            <!-- Action Buttons -->
+            <StackPanel Orientation="Horizontal" Margin="40,0,0,0" Spacing="15">
+                <Button Content="Add New Perfume"
+                        Command="{Binding AddNewPerfumeCommand}"
+                        VerticalAlignment="Center" />
+                <Button Content="Add New Perfumery"
+                        Command="{Binding AddNewPerfumeryCommand}"
+                        VerticalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Tab Control -->
+        <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+            <TabItem Header="Perfumes">
+                <views:PerfumeListView DataContext="{Binding PerfumeListViewModel}" />
+            </TabItem>
+
+            <TabItem Header="Perfumeries">
+                <views:PerfumeryListView DataContext="{Binding PerfumeryListViewModel}" />
+            </TabItem>
+
+            <TabItem Header="Manage Perfume">
+                <views:PerfumeManagementView DataContext="{Binding PerfumeManagementViewModel}" />
+            </TabItem>
+
+            <TabItem Header="Manage Perfumery">
+                <views:PerfumeryManagementView DataContext="{Binding PerfumeryManagementViewModel}" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

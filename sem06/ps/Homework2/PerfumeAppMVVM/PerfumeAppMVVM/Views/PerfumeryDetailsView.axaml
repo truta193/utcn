@@ -1,0 +1,227 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:PerfumeAppMVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="600"
+             x:Class="PerfumeAppMVVM.Views.PerfumeryDetailsView"
+             x:DataType="vm:PerfumeryDetailsViewModel">
+
+    <Border Background="#1E1E1E"
+            CornerRadius="8"
+            BoxShadow="0 4 20 0 #80000000"
+            Width="500"
+            MaxHeight="600">
+        <Grid RowDefinitions="Auto,*,Auto">
+
+            <!-- Header -->
+            <Border Grid.Row="0"
+                    Background="#292929"
+                    Padding="15"
+                    CornerRadius="8 8 0 0"
+                    ZIndex="1">
+                <Grid ColumnDefinitions="*, Auto">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Perfumery.Name}"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Perfumery.City}"
+                                   FontSize="14"
+                                   Foreground="#CCCCCC"
+                                   Margin="0,5,0,0" />
+                    </StackPanel>
+                    <Button Grid.Column="1"
+                            Content="✕"
+                            Command="{Binding CloseCommand}"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Padding="5"
+                            VerticalAlignment="Top" />
+                </Grid>
+            </Border>
+
+            <!-- Content -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Spacing="15">
+                    <!-- Perfumery Details -->
+                    <Border Background="#2A2A2A" CornerRadius="5" Padding="15">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="STORE DETAILS" FontWeight="Bold" FontSize="14" Foreground="#CCCCCC" />
+
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <TextBlock Text="Address: " FontWeight="SemiBold" Foreground="#CCCCCC" Width="100" />
+                                <TextBlock Text="{Binding Perfumery.Address}" Foreground="White" TextWrapping="Wrap" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        IsVisible="{Binding Perfumery.Phone, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                <TextBlock Text="Phone: " FontWeight="SemiBold" Foreground="#CCCCCC" Width="100" />
+                                <TextBlock Text="{Binding Perfumery.Phone}" Foreground="White" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        IsVisible="{Binding Perfumery.Email, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                <TextBlock Text="Email: " FontWeight="SemiBold" Foreground="#CCCCCC" Width="100" />
+                                <TextBlock Text="{Binding Perfumery.Email}" Foreground="White" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        IsVisible="{Binding Perfumery.ManagerName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                <TextBlock Text="Manager: " FontWeight="SemiBold" Foreground="#CCCCCC" Width="100" />
+                                <TextBlock Text="{Binding Perfumery.ManagerName}" Foreground="White" />
+                            </StackPanel>
+
+                            <!-- Export Section -->
+                            <Border Background="#222222" CornerRadius="4" Padding="10" Margin="0,10,0,0">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Text="EXPORT OUT-OF-STOCK LIST"
+                                               FontWeight="Bold"
+                                               FontSize="12"
+                                               Foreground="#CCCCCC" />
+
+                                    <TextBlock
+                                        Text="{Binding OutOfStockCount, StringFormat='{}{0} items need to be restocked'}"
+                                        Foreground="#AAAAAA"
+                                        Margin="0,0,0,5" />
+
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                                        <Button Content="Export as CSV"
+                                                Command="{Binding ExportToCsvCommand}"
+                                                IsEnabled="{Binding HasOutOfStock}"
+                                                Background="#3D3D3D"
+                                                Foreground="White"
+                                                Padding="10,5">
+                                            <Button.Styles>
+                                                <Style Selector="Button:pointerover">
+                                                    <Setter Property="Background" Value="#4C4C4C" />
+                                                </Style>
+                                                <Style Selector="Button:disabled">
+                                                    <Setter Property="Opacity" Value="0.5" />
+                                                </Style>
+                                            </Button.Styles>
+                                        </Button>
+
+                                        <Button Content="Export as DOCX"
+                                                Command="{Binding ExportToDocxCommand}"
+                                                IsEnabled="{Binding HasOutOfStock}"
+                                                Background="#3D3D3D"
+                                                Foreground="White"
+                                                Padding="10,5">
+                                            <Button.Styles>
+                                                <Style Selector="Button:pointerover">
+                                                    <Setter Property="Background" Value="#4C4C4C" />
+                                                </Style>
+                                                <Style Selector="Button:disabled">
+                                                    <Setter Property="Opacity" Value="0.5" />
+                                                </Style>
+                                            </Button.Styles>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Inventory Section -->
+                    <StackPanel Spacing="8">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Text="AVAILABLE PERFUMES" FontWeight="Bold" FontSize="14" Foreground="#CCCCCC" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding PerfumeCount, StringFormat='{}{0} items'}"
+                                       Foreground="#AAAAAA" />
+                        </Grid>
+
+                        <!-- Search box -->
+                        <TextBox Watermark="Search inventory..."
+                                 Text="{Binding SearchQuery}"
+                                 Margin="0,5,0,10"
+                                 Background="#333333"
+                                 Foreground="White" />
+
+                        <!-- Inventory List -->
+                        <ItemsControl ItemsSource="{Binding FilteredInventory}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#2A2A2A"
+                                            CornerRadius="5"
+                                            Padding="10"
+                                            Margin="0,0,0,8">
+                                        <Grid ColumnDefinitions="Auto, *, Auto">
+                                            <!-- Image -->
+                                            <Border Grid.Column="0"
+                                                    Width="50"
+                                                    Height="50"
+                                                    CornerRadius="4"
+                                                    ClipToBounds="True"
+                                                    Background="#333333"
+                                                    Margin="0,0,10,0">
+                                                <Image
+                                                    Source="{Binding Perfume.ImagePath, Converter={StaticResource StringToImageConverter}}"
+                                                    Stretch="Uniform"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"
+                                                    IsVisible="{Binding Perfume.ImagePath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                            </Border>
+
+                                            <!-- Info -->
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Perfume.Name}"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="White" />
+                                                <TextBlock Text="{Binding Perfume.Brand}"
+                                                           Foreground="#CCCCCC"
+                                                           FontSize="12" />
+                                            </StackPanel>
+
+                                            <!-- Quantity -->
+                                            <Border Grid.Column="2"
+                                                    Background="{Binding IsAvailable, Converter={StaticResource BoolToColorConverter}}"
+                                                    CornerRadius="3"
+                                                    Padding="8,4"
+                                                    VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Quantity, StringFormat='{}Qty: {0}'}"
+                                                           Foreground="#FFFFFF"
+                                                           FontSize="12" />
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- No results message -->
+                        <TextBlock Text="No perfumes found in this store's inventory"
+                                   Foreground="#AAAAAA"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,20"
+                                   IsVisible="{Binding !HasInventory}" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Footer -->
+            <Border Grid.Row="2"
+                    Background="#292929"
+                    Padding="15"
+                    CornerRadius="0 0 8 8"
+                    ZIndex="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                    <Button Content="Manage Inventory"
+                            Command="{Binding ManageInventoryCommand}"
+                            Padding="15,10"
+                            Background="#444444"
+                            Foreground="White" />
+                    <Button Content="Close"
+                            Command="{Binding CloseCommand}"
+                            Padding="15,10"
+                            Background="#444444"
+                            Foreground="White" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

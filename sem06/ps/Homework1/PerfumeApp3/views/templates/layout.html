@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Perfume Store Chain Management{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .perfume-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .card-img-container {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .perfume-card {
+            height: 100%;
+            transition: transform 0.3s;
+        }
+
+        .perfume-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6c757d;
+        }
+
+        .btn-feature {
+            margin-top: 1rem;
+        }
+
+        .main-section {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #6c757d;
+        }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">
+                        <i class="fas fa-home me-1"></i>Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('list_perfumes') }}">
+                        <i class="fas fa-spray-can me-1"></i>Perfumes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('list_perfumeries') }}">
+                        <i class="fas fa-store me-1"></i>Perfumeries
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('new_inventory_form') }}">
+                        <i class="fas fa-box me-1"></i>Inventory
+                    </a>
+                </li>
+            </ul>
+            <form class="d-flex ms-auto" action="{{ url_for('search_perfumes') }}" method="get">
+                <input class="form-control me-2" type="search" placeholder="Search perfumes..." name="query" required>
+                <button class="btn btn-outline-light" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category if category not in ('error', 'danger') else 'danger' }} alert-dismissible fade show"
+         role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

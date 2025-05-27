@@ -1,0 +1,296 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:PerfumeAppMVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="PerfumeAppMVVM.Views.PerfumeryManagementView"
+             x:DataType="vm:PerfumeryManagementViewModel"
+             Background="#1E1E1E">
+
+    <Grid ColumnDefinitions="*,*">
+        <!-- Perfumery Info -->
+        <Border Grid.Column="0" Background="#292929" Margin="10" CornerRadius="8">
+            <ScrollViewer Margin="15" VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="{Binding OperationTitle}"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Foreground="White"
+                               Margin="0,0,0,10" />
+
+                    <TextBlock Text="{Binding StatusMessage}"
+                               Foreground="#FF6B6B"
+                               HorizontalAlignment="Center"
+                               IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                               Margin="0,0,0,10" />
+
+                    <!-- Form -->
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" Margin="0,10,15,5" Foreground="#CCCCCC"
+                                   VerticalAlignment="Center" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPerfumery.Name}" Margin="0,10,0,5"
+                                 Background="#333333" Foreground="White" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="City:" Margin="0,10,15,5" Foreground="#CCCCCC"
+                                   VerticalAlignment="Center" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPerfumery.City}" Margin="0,10,0,5"
+                                 Background="#333333" Foreground="White" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Address:" Margin="0,10,15,5" Foreground="#CCCCCC"
+                                   VerticalAlignment="Center" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrentPerfumery.Address}"
+                                 Margin="0,10,0,5" Background="#333333" Foreground="White" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Phone:" Margin="0,10,15,5" Foreground="#CCCCCC"
+                                   VerticalAlignment="Center" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentPerfumery.Phone}" Margin="0,10,0,5"
+                                 Background="#333333" Foreground="White" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Email:" Margin="0,10,15,5" Foreground="#CCCCCC"
+                                   VerticalAlignment="Center" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CurrentPerfumery.Email}" Margin="0,10,0,5"
+                                 Background="#333333" Foreground="White" />
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Manager:" Margin="0,10,15,5" Foreground="#CCCCCC"
+                                   VerticalAlignment="Center" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CurrentPerfumery.ManagerName}"
+                                 Margin="0,10,0,5" Background="#333333" Foreground="White" />
+                    </Grid>
+
+                    <!-- Buttons -->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,20,0,0"
+                                Spacing="15">
+                        <Button Content="Save"
+                                Command="{Binding SavePerfumeryCommand}"
+                                Padding="20,10"
+                                Background="#444444"
+                                Foreground="White" />
+                        <Button Content="Reset"
+                                Command="{Binding ResetFormCommand}"
+                                Padding="20,10"
+                                Background="#3A3A3A"
+                                Foreground="White" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Inventory Management -->
+        <Border Grid.Column="1" Background="#292929" Margin="10" CornerRadius="8" IsVisible="{Binding IsEditMode}">
+            <Grid RowDefinitions="Auto,*" Margin="15">
+                <!-- Header and Add Button -->
+                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,15">
+                    <TextBlock Text="Inventory Management"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               VerticalAlignment="Center" />
+
+                    <Button Grid.Column="1"
+                            Content="Add Perfume"
+                            Command="{Binding ShowAddPerfumeCommand}"
+                            Padding="10,5"
+                            Background="#4CAF50"
+                            Foreground="White" />
+                </Grid>
+
+                <!-- Content Area -->
+                <Grid Grid.Row="1" RowDefinitions="Auto,*,Auto">
+                    <!-- Search Bar -->
+                    <TextBox Grid.Row="0"
+                             Watermark="Search inventory..."
+                             Text="{Binding InventorySearchQuery}"
+                             Margin="0,0,0,15"
+                             Background="#333333"
+                             Foreground="White" />
+
+                    <!-- Inventory List -->
+                    <ListBox Grid.Row="1"
+                             ItemsSource="{Binding FilteredInventory}"
+                             SelectedItem="{Binding SelectedInventoryItem}"
+                             Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*,Auto" Margin="5">
+                                    <Border Grid.Column="0"
+                                            Width="50"
+                                            Height="50"
+                                            Margin="0,0,10,0"
+                                            CornerRadius="5"
+                                            ClipToBounds="True"
+                                            Background="#333333">
+                                        <Image
+                                            Source="{Binding ImagePath, Converter={StaticResource StringToImageConverter}}"
+                                            Stretch="Uniform"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            IsVisible="{Binding ImagePath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Foreground="White"
+                                                   FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Brand}"
+                                                   Foreground="#BBBBBB"
+                                                   FontSize="12" />
+                                    </StackPanel>
+
+                                    <Border Grid.Column="2"
+                                            Background="{Binding IsInInventory, Converter={StaticResource BoolToColorConverter}}"
+                                            Padding="8,4"
+                                            CornerRadius="4"
+                                            VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding InventoryQuantity, StringFormat='{}Qty: {0}'}"
+                                                   FontSize="12"
+                                                   Foreground="White" />
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <!-- Inventory Actions -->
+                    <Grid Grid.Row="2" ColumnDefinitions="*,Auto,Auto" Margin="0,15,0,0"
+                          IsVisible="{Binding SelectedInventoryItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <NumericUpDown Grid.Column="0"
+                                       Value="{Binding QuantityToUpdate}"
+                                       Minimum="0"
+                                       Maximum="1000"
+                                       Increment="1"
+                                       Margin="0,0,10,0"
+                                       Background="#333333"
+                                       Foreground="White" />
+
+                        <Button Grid.Column="1"
+                                Content="Update"
+                                Command="{Binding UpdateInventoryItemCommand}"
+                                Padding="15,10"
+                                Margin="0,0,10,0"
+                                Background="#4CAF50"
+                                Foreground="White" />
+
+                        <Button Grid.Column="2"
+                                Content="Remove"
+                                Command="{Binding RemoveFromInventoryCommand}"
+                                Padding="15,10"
+                                Background="#F44336"
+                                Foreground="White" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Add Perfume Popup -->
+        <Border Grid.ColumnSpan="2"
+                Background="#80000000"
+                IsVisible="{Binding IsAddPerfumeVisible}"
+                ZIndex="10">
+            <Border Background="#292929"
+                    Width="400"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    CornerRadius="8"
+                    BoxShadow="0 4 20 0 #40000000"
+                    Padding="20">
+                <Grid RowDefinitions="Auto,Auto,*,Auto">
+                    <TextBlock Grid.Row="0"
+                               Text="Add Perfume to Inventory"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Foreground="White"
+                               Margin="0,0,0,15" />
+
+                    <TextBox Grid.Row="1"
+                             Watermark="Search perfumes..."
+                             Text="{Binding PerfumeSearchQuery}"
+                             Margin="0,0,0,15"
+                             Background="#333333"
+                             Foreground="White" />
+
+                    <ListBox Grid.Row="2"
+                             ItemsSource="{Binding SearchResults}"
+                             SelectedItem="{Binding SelectedSearchResult}"
+                             Background="Transparent"
+                             MaxHeight="300"
+                             Margin="0,0,0,15">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*" Margin="5">
+                                    <Border Grid.Column="0"
+                                            Width="40"
+                                            Height="40"
+                                            Margin="0,0,10,0"
+                                            CornerRadius="5"
+                                            ClipToBounds="True"
+                                            Background="#333333">
+                                        <Image
+                                            Source="{Binding ImagePath, Converter={StaticResource StringToImageConverter}}"
+                                            Stretch="Uniform"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            IsVisible="{Binding ImagePath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                    </Border>
+
+                                    <StackPanel Grid.Column="1"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Foreground="White"
+                                                   FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Brand}"
+                                                   Foreground="#BBBBBB"
+                                                   FontSize="12" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Grid Grid.Row="3" ColumnDefinitions="*,*,*">
+                        <NumericUpDown Grid.Column="0"
+                                       Value="{Binding QuantityToAdd}"
+                                       Minimum="1"
+                                       Maximum="1000"
+                                       Increment="1"
+                                       Margin="0,0,10,0"
+                                       IsEnabled="{Binding SelectedSearchResult, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                       Background="#333333"
+                                       Foreground="White" />
+
+                        <Button Grid.Column="1"
+                                Content="Add"
+                                Command="{Binding AddPerfumeToInventoryCommand}"
+                                IsEnabled="{Binding SelectedSearchResult, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                Margin="0,0,5,0"
+                                Background="#4CAF50"
+                                Foreground="White" />
+
+                        <Button Grid.Column="2"
+                                Content="Cancel"
+                                Command="{Binding CancelAddPerfumeCommand}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                Margin="5,0,0,0"
+                                Background="#3A3A3A"
+                                Foreground="White" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </Border>
+
+        <TextBlock Grid.Column="1"
+                   Text="Save the perfumery information first to manage inventory"
+                   IsVisible="{Binding !IsEditMode}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#AAAAAA" />
+    </Grid>
+</UserControl>
